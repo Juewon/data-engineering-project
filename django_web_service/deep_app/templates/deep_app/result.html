@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+  <section id="hero" class="hero d-flex align-items-start section-bg">
+    <div class="container" style="max-width: 1300px;">
+  
+      <div class="row justify-content-start gy-5"> <!-- 좌측 정렬 -->
+        <div class="col-lg-5 text-left">
+          <h2 data-aos="fade-up" style="font-size: 70px;">This is</h2>
+        </div>
+      </div>
+      <div class="row justify-content-center gy-5"> <!-- 중앙 정렬 -->
+        <div class="col-lg-5 text-center position-relative">
+          <img id = "predict_img" src="/media/{{ img_name }}">
+        </div>
+      </div>
+    </div>
+  </section><!-- End Hero Section -->
+
+  <section id="h2" class="hero d-flex align-items-start section-bg">
+    <div class="description-box" data-aos="fade-up" data-aos-delay="50">
+        <p style=" font-size: 28px;">이 음식은 <strong>{{ class_name }}</strong> 입니다.</p>
+        <p style=" font-size: 18px;"><strong>{{ class_name }}(이)란 무엇인가요? :</strong> {{ info }}</p>
+        <p style=" font-size: 18px;"><strong>이 음식의 레시피는 무엇인가요? :</strong> {{ ingredient }}</p>
+        <p style=" font-size: 18px;"><strong>주의해야 할 재료가 들어있나요? :</strong> {{ taboo_ingredient }}</p>
+    </div>
+  </section><!-- End Hero Section -->
+  <style>
+    .description-box {
+      position: relative;
+      margin: 0 auto; /* 좌우 여백을 자동으로 조절하여 가로 중앙으로 배치 */
+      width: 70%;
+      padding: 20px;
+      background-color: #fff;
+      border: 2px solid #000;
+    }
+  </style>
+  
+<main id="main">
+<!-- ======= Start Rank Section ======= -->
+<style>
+  /* 여백 및 테이블 스타일 지정 */
+  .custom-table {
+    width: 90%; /* 표 전체의 폭을 조정할 수 있습니다. */
+    margin: 0 auto; /* 가운데 정렬 */
+    border-collapse: collapse; /* 셀 경계를 병합함으로써 테이블 스타일 조정 */
+  }
+
+  .custom-table th,
+  .custom-table td {
+    padding: 10px; /* 각 셀의 여백을 조정할 수 있습니다. */
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+  }
+
+  /* '방문자 리뷰' 컬럼의 너비를 가장 크게 설정 */
+  .custom-table th:nth-last-child(1),
+  .custom-table td:nth-last-child(1) {
+    width: 60%; /* 예를 들어, 나머지 4개 컬럼과 비교하여 크게 설정합니다. */
+  }
+
+  /* 나머지 컬럼의 너비를 동일하게 설정 */
+  .custom-table th:not(:nth-last-child(1)),
+  .custom-table td:not(:nth-last-child(1)) {
+    width: 10%; /* 나머지 4개 컬럼의 폭을 동일하게 설정합니다. */
+  }
+</style>
+<section id="events" class="events">
+  <div class="container-fluid" data-aos="fade-up">
+
+    <div class="section-header">
+      <h2>Ranking</h2>
+      <p>This is the <span> top 5</span> ranking for this food. </p>
+    </div>
+    <table class="table table-striped custom-table">
+      <thead>
+        <tr>
+          <th>음식점 이름</th>
+          <th>위치</th>
+          <th>전화번호</th>
+          <th>음식점 특징</th>
+          <th>방문자 리뷰</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for rank5_info in rank5_info_list %}
+        <tr>
+          <td>{{ rank5_info.store_name }}</td>
+          <td>{{ rank5_info.addr }}</td>
+          <td>{{ rank5_info.tel }}</td>
+          <td>음식점 1 특징</td>
+          <td>{{ rank5_info.re_visitor }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+<style>
+  .custom-table {
+    margin-left: 40px; /* 원하는 여백 크기로 조절 */
+    margin-right: 40px;
+  }
+</style>
+<!-- End Rank Section -->
+
+<!-- ======= Start Map Section ======= -->
+<section id="contact" class="contact">
+<div class="container" data-aos="fade-up">
+
+  <div class="section-header">
+    <h2>Map</h2>
+    <p>Are you planning to visit this place?  <span>  We'll show you the map.</span></p>
+  </div>
+
+  <div class="mb-3">
+    <div id='map' style='border: 0; width: 100%; height: 450px;'></div>
+    {% comment %} <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe> {% endcomment %}
+  </div><!-- End Google Maps -->
+</div>
+
+<script>
+    var map = null;
+
+    function initMap() {
+        map = new naver.maps.Map('map', {
+            center: new naver.maps.LatLng(37.5665, 126.9780),
+            zoom: 11
+        });
+
+        // 상위 5개 음식점의 정보
+        var rank5Stores = [
+          {% for rank5_info in rank5_info_list %}
+            {
+              store_name : '{{ rank5_info.store_name}}',
+              x : {{ rank5_info.x }},
+              y : {{ rank5_info.y }},
+              addr : '{{ rank5_info.addr }}',
+              tel : '{{ rank5_info.tel }}'
+            },
+          {% endfor %}
+        ];
+        
+        // 각 음식점에 마커 추가
+        rank5Stores.forEach(function(store) {
+          var marker = new naver.maps.Marker({
+            position: new naver.maps.LatLng(store.y, store.x),
+            map: map,
+            title: store.store_name
+          });
+
+          // 마커를 클릭할 때 정보 창 표시
+          var infoWindow = new naver.maps.InfoWindow({
+            content: `
+              <div> 
+                <h4>${store.store_name}</h4>
+                <p>주소: ${store.addr}</p>
+                <p>전화번호: ${store.tel}</p>
+              </div>
+            `
+          });
+
+          naver.maps.Event.addListener(marker, 'click', function() {
+            infoWindow.open(map, marker);
+          });
+        });
+    }
+
+    initMap();
+</script>
+<div class="container" data-aos="fade-up">
+  <div class="row gy-4">
+    {% for row in rank5_info_list %}
+    <div class="col-md-6">
+      <div class="info-item d-flex align-items-center">
+        <i class="icon bi bi-map flex-shrink-0"></i>
+        <div>
+            <h3>{{ row.store_name }}</h3>
+            <p>{{ row.addr }}</p>
+        </div>
+    </div>
+    </div><!-- End Info Item -->
+    {% endfor %}
+  </div>
+</div>
+</section>
+<!-- ======= End Map Section ======= -->
+</main><!-- End #main -->
+{% endblock content %}

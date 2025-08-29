@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %} 
+
+
+<section>
+<div class="row justify-content-center gy-5"> <!-- 중앙 정렬 -->
+<div class="col-lg-5 text-center">
+<h2 style="margin-top: 40px;">음식점 검색</h2>
+<form id='guSearchForm' method="post">
+    {% csrf_token %}
+    <select name="food_name" id="food_name">
+        <option value="">음식 선택</option>
+        {% for food_name in res_food_list %}
+        <option value="{{food_name}}"> {{food_name}} </option>
+        {% endfor %}
+    </select>
+        
+    <input type="submit" value="검색">
+</form><br><br>
+</div>
+</div>
+</section>
+
+{% comment %} 검색 결과 출력할 div {% endcomment %}
+<div id="searchResultBox"></div>
+{% comment %} <script src="{% static '/js/food_map.js' %}"></script> {% endcomment %}
+{% endblock content %}
+

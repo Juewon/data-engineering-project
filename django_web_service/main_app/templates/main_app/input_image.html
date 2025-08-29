@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <section id="hero" class="hero d-flex align-items-center section-bg">
+    <div class="container" style="max-width: 1300px;">
+      <div class="row justify-content-center gy-5"> <!-- 중앙 정렬 -->
+        <div class="col-lg-5 text-center">
+          <h2 data-aos="fade-up" style="font-size: 45px;">Please upload a photo of your dish here<br>I'll help you find your food!</h2>
+        </div>
+      </div>
+      <div class="row justify-content-center gy-5"> <!-- 중앙 정렬 -->
+        <div class="col-lg-5 text-center">
+          <img src="{% static '/main/assets/img/tokboggi_3.png' %}" class="img-fluid enlarged-image" alt="" data-aos="zoom-out" data-aos-delay="300">
+        </div>
+      </div>
+      <div class="row justify-content-center gy-5"> <!-- 중앙 정렬 -->
+        <div class="col-lg-5 text-center">
+          <div class="d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
+            <a href="result" class="btn-book-a-table">Analyze Food</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Hero Section -->
+{% endblock content %}

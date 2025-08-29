@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+{% block additional_css %}
+<link rel="stylesheet" href="{% static '/main/assets/css/login.css' %}">
+{% endblock additional_css %}
+
+{% block body_class %}page-specific{% endblock body_class %}
+
+{% block content %}
+<div class="login-container">
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+        <form method='POST'>
+            {% csrf_token %}
+            <h1>Create Account</h1>
+            <span>or use your email for registration</span>
+            <input type="text" id="{{ signup_form.username.id_for_label }}" name="{{ signup_form.username.name }}" placeholder="Username">
+            <input type="email" id="{{ signup_form.email.id_for_label }}" name="{{ signup_form.email.name }}" placeholder="Email">
+            <input type="password" id="{{ signup_form.password1.id_for_label }}" name="{{ signup_form.password1.name }}" placeholder="Password">
+            <input type="password" id="{{ signup_form.password2.id_for_label }}" name="{{ signup_form.password2.name }}" placeholder="Confirm Password">
+            <button name='signup'>Sign Up</button>
+        </form>
+        </div>
+
+        <div class="form-container sign-in-container">
+        <form method='POST'>
+            {% csrf_token %}
+            <h1>Sign in</h1>
+            <input type="text" id="{{ signin_form.username.id_for_label }}" name="{{ signin_form.username.name }}" placeholder="Username">
+            <input type="email" id="{{ signin_form.email.id_for_label }}" name="{{ signin_form.email.name }}" placeholder="Email">
+            <input type="password" id="{{ signin_form.password.id_for_label }}" name="{{ signin_form.password.name }}" placeholder="Password">
+            <a href="#">Forgot your password?</a>
+            <button name='signin'>Sign In</button>
+        </form>
+
+        </div>
+        <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+            <h1>Welcome Back!</h1>
+            <p>To keep connected with us please login with your personal info</p>
+            <button class="ghost" id="signIn">Sign In</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+            <h1>Hello, Friend!</h1>
+            <p>Enter your personal details and start journey with us</p>
+            <button class="ghost" id="signUp">Sign Up</button>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+    <script src="{% static '/main/assets/js/login.js' %}"></script>
+{% endblock content %}

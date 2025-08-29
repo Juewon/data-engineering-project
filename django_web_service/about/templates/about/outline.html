@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section id="hero" class="hero d-flex align-items-center section-bg">
+    <div class="container" style="max-width: 1300px;" data-aos="fade-up">
+    <div class="row justify-content-center gy-5"> <!-- 중앙 정렬 -->
+        <div class="col-lg-5 text-center">
+        <h2 style="font-size: 15px;">주제 : 외국인 관광객을 위한 맞춤형 정보 제공 및 음식점 추천 서비스</h2>
+        <hr>
+        <p>선정이유</p>
+        <li>연마다 한국을 방문하는 외국인 관광객들의 수는 점차 늘고있고, 그 중 음식/미식과 관련된 식도락 관광을 목적으로 방한하는 외국인 관광객들도 높은 비율을 보인다.</li>
+        <li>의사소통 문제, 맛집 및 특정 음식(종교, 알러지 등)에 대한 정보 제공 인프라의 부족으로 여행 중 불편함을 느낀 외국인들의 불편사항도 적지 않을것으로 예상</li>
+        <li>딥러닝 기반의 이미지 분류 모델을 활용해 사용자가 음식 이미지만으로 해당 음식과 관련된 맛집 및 음식관련 정보를 추천해주는 서비스를 구현해 외국인 관광객들로 하여금 편의성을 제공해주고 함</li>
+        <li>외국인 관광객들에 여행 만족도를 보다  더 향상시킬 수 있는 기대효과를 도출 가능할 것으로 예상</li>
+        <br>
+        <p>수집 데이터</p>
+        <li>한식 이미지 데이터 : AI-HUB</li>
+        
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+
+</section>
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
+
+    <div class="container">
+        <div class="row gy-3">
+        <div class="col-lg-3 col-md-6 d-flex">
+            <div>
+                <h4>developer</h4>
+                <p>
+                Kim Sungwoo <br>
+                Kim Myeongjun <br>
+                Seo Juewon <br>
+            </p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="container">
+    <div class="copyright">
+        &copy; Copyright <strong><span>Yummy</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div>
+    </div>
+
+</footer><!-- End Footer -->
+<!-- End Footer -->
+
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<div id="preloader"></div>
+
+<!-- Vendor JS Files -->
+<script src="{% static 'main/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'main/assets/vendor/aos/aos.js' %}"></script>
+<script src="{% static 'main/assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+<script src="{% static 'main/assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+<script src="{% static 'main/assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'main/assets/vendor/php-email-form/validate.js' %}"></script>
+
+<!-- Template Main JS File -->
+<script src="{% static 'main/assets/js/main.js' %}"></script>
+{% endblock content %}
