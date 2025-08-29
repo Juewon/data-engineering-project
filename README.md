@@ -1,2 +1,2 @@
-# data-engineering-project
-Personalized dining recommendations for overseas visitors using deep learning
+# 외국인 관광객을 위한 딥러닝 기반 맞춤형 음식점 추천 서비스
+[프로젝트 바로가기](외국인_관광객_위한_딥러닝_기반_맞춤_음식점_추천_서비스.pdf)
